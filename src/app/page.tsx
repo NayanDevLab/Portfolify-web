@@ -157,7 +157,7 @@ export default function Home() {
                                                 {testimonial.name}
                                             </h4>
                                             <p className="text-sm text-muted-foreground italic">
-                                                "{testimonial.quote}"
+                                                {testimonial.quote}
                                             </p>
                                             <div className="flex gap-1 text-yellow-400 mt-2">
                                                 {'★★★★★'

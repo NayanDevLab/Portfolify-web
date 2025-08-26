@@ -15,7 +15,7 @@ export const projectApi = apiSlice.injectEndpoints({
             }),
             providesTags: ['Project'],
         }),
-        getProjectsBySlug: builder.query<Project, string>({
+        getProjectsBySlug: builder.query<Project[], string>({
             query: (slug) => ({
                 url: `/projects/user/${slug}`,
                 method: 'GET',

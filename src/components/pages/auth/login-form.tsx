@@ -13,7 +13,7 @@ export function LoginForm() {
     const [password, setPassword] = useState('');
     const [localError, setLocalError] = useState<string | null>(null);
     const router = useRouter();
-    const [login, { isLoading, isError, isSuccess }] = useLoginMutation();
+    const [login, { isLoading, isError }] = useLoginMutation();
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,6 +23,7 @@ export function LoginForm() {
             await login({ email, password }).unwrap();
             router.push('/admin');
         } catch (err) {
+            console.log(err);
             setLocalError('Invalid credentials or server error.');
         }
     };
