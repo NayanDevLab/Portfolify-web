@@ -15,14 +15,10 @@ export default function LayoutWrapper({
         setIsSidebarOpen((prev) => !prev);
     }
 
-    function handleCloseSidebar() {
-        setIsSidebarOpen(false);
-    }
-
     return (
         <div className="relative min-h-screen">
             <MyNavBar onToggleSidebar={handleToggleSidebar} />
-            <MySIdebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+            <MySIdebar isOpen={isSidebarOpen} />
             <main
                 className={`pt-16 transition-all duration-300 ${
                     isSidebarOpen ? 'ml-64' : 'ml-0'

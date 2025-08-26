@@ -87,7 +87,7 @@ export default function UserDetailsForm() {
     return (
         <div className="w-full min-h-screen bg-gray-50">
             <div className="container mx-auto px-6 py-8">
-                <h1 className="text-2xl font-bold mb-8">
+                <h1 className="text-2xl font-bold mb-8 leading-normal text-gray-700">
                     {USER_DETAIL_CONSTANT.pageTitle}
                 </h1>
 
@@ -173,6 +173,7 @@ export default function UserDetailsForm() {
                                     height={96}
                                     alt={`Profile Preview`}
                                     className="mt-3 w-24 h-24 rounded object-cover border"
+                                    unoptimized
                                 />
                             )}
                         </div>

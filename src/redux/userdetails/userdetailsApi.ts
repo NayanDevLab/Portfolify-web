@@ -14,7 +14,7 @@ export const userDetailsApi = apiSlice.injectEndpoints({
                 method: 'GET',
                 meta: { skipSuccessToast: true },
             }),
-            transformResponse: (resp: UserDetailsResponse) => resp.data ?? null,
+            // transformResponse: (resp: UserDetailsResponse) => resp.data ?? null,
             providesTags: ['UserDetails'],
         }),
 

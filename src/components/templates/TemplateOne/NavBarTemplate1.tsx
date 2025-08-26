@@ -9,16 +9,19 @@ import Image from 'next/image';
 export default function NavBarTemplate1() {
     const { slug } = useParams();
     const { data: detailsData } = useGetUserDetailsBySlugQuery(slug as string);
+    console.log(detailsData);
     return (
         <nav className="bg-[#18181B] text-gray-100 py-4 px-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-                <Image
-                    src={detailsData?.profilePictureUrl || ''}
-                    width={56}
-                    height={56}
-                    alt={detailsData?.title || ''}
-                    className="rounded-full object-cover border border-gray-700"
-                />
+                {detailsData?.profilePictureUrl && (
+                    <Image
+                        src={detailsData?.profilePictureUrl || ''}
+                        width={56}
+                        height={56}
+                        alt={detailsData?.title || ''}
+                        className="rounded-full object-cover border border-gray-700"
+                    />
+                )}
 
                 <span className="font-bold text-lg">{'User'}</span>
             </div>
