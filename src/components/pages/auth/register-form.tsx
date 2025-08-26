@@ -35,6 +35,7 @@ export function RegisterForm() {
         try {
             await register({ fullName, email, password, slug }).unwrap();
             router.push('/auth');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             setError(err?.data?.message || 'Registration failed.');
         }

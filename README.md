@@ -15,22 +15,22 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js, React, Tailwind CSS, Redux Toolkit, RTK Query  
-- **Backend**: Node.js, Express.js, MongoDB  
-- **Authentication**: JWT-based authentication  
-- **File Uploads**: Cloudinary  
-- **Validation**: Zod  
+- **Frontend**: Next.js, React, Tailwind CSS, Redux Toolkit, RTK Query
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: JWT-based authentication
+- **File Uploads**: Cloudinary
+- **Validation**: Zod
 - **Hosting**: Netlify (Frontend), Render/Heroku (Backend)
 
 ---
 
 ## ✨ Features
 
-- 🧑‍🎨 Real-time portfolio editing with dynamic theme switching  
-- 🔒 JWT Authentication and secure session management  
-- 🌍 Fully responsive design for all devices  
-- 🖼️ Image uploads with Cloudinary  
-- ⚙️ Backend APIs with input validation via Zod  
+- 🧑‍🎨 Real-time portfolio editing with dynamic theme switching
+- 🔒 JWT Authentication and secure session management
+- 🌍 Fully responsive design for all devices
+- 🖼️ Image uploads with Cloudinary
+- ⚙️ Backend APIs with input validation via Zod
 - 🔄 Frontend state & data management using Redux Toolkit + RTK Query
 
 ---
