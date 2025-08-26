@@ -5,76 +5,21 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Github, Link as LinkIcon, ChevronRight } from 'lucide-react';
+import { useTemplateData } from '../TemplateDataWrapper';
 
-// ---- Types ----
 type Project = {
     name: string;
     description: string;
-    github?: string;
-    demo?: string;
-    images: string[]; // first image used as cover
+    githubLink?: string;
+    demoLink?: string;
+    mediaUrls: string[];
 };
-
-// ---- Hard-coded data (use your admin values) ----
-const projects: Project[] = [
-    {
-        name: 'SHCDN UI Extra',
-        description: 'All time my Best Library and enjoy my best lib section.',
-        github: 'https://www.github.com',
-        demo: 'https://www.pagalworld.com',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/sample.jpg',
-        ],
-    },
-    {
-        name: 'Nagarik App',
-        description: 'Citizen services application.',
-        github: 'https://github.com/example/nagarik',
-        demo: 'https://example.com/nagarik',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/couple.jpg',
-        ],
-    },
-    {
-        name: 'Ambition Guru',
-        description: 'Learning & goal tracking app.',
-        github: 'https://github.com/example/ambition-guru',
-        demo: 'https://example.com/ambition',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/balloons.jpg',
-        ],
-    },
-    {
-        name: 'SociAir',
-        description: 'Social media utilities.',
-        github: 'https://github.com/example/sociair',
-        demo: 'https://example.com/sociair',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/beach.jpg',
-        ],
-    },
-    {
-        name: 'Tokma',
-        description: 'Internal tools suite.',
-        github: 'https://github.com/example/tokma',
-        demo: 'https://example.com/tokma',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/motorbike.jpg',
-        ],
-    },
-    {
-        name: 'Saara',
-        description: 'Commerce utilities and dashboards.',
-        github: 'https://github.com/example/saara',
-        demo: 'https://example.com/saara',
-        images: [
-            'https://res.cloudinary.com/demo/image/upload/w_1200,q_85/puppy.jpg',
-        ],
-    },
-];
 
 // ---- UI ----
 export default function PortfolioSection() {
+    const {
+        data: { projects },
+    } = useTemplateData();
     return (
         <section className="rounded-[28px] border border-neutral-800 bg-[#161616] text-neutral-100 shadow-[inset_0_-1px_0_rgba(255,255,255,0.04)]">
             <header className="px-6 pt-6 md:px-10">
@@ -96,7 +41,7 @@ export default function PortfolioSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-    const cover = project.images[0];
+    const cover = project.mediaUrls[0];
 
     return (
         <Card className="group overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 transition-transform hover:-translate-y-1">
@@ -121,7 +66,7 @@ function ProjectCard({ project }: { project: Project }) {
                 )}
 
                 <div className="mt-4 flex items-center gap-2">
-                    {project.github && (
+                    {project.githubLink && (
                         <Button
                             asChild
                             size="sm"
@@ -129,7 +74,7 @@ function ProjectCard({ project }: { project: Project }) {
                             className="bg-neutral-800 text-neutral-200 hover:bg-neutral-700"
                         >
                             <a
-                                href={project.github}
+                                href={project.githubLink}
                                 target="_blank"
                                 rel="noreferrer"
                             >
@@ -138,14 +83,14 @@ function ProjectCard({ project }: { project: Project }) {
                             </a>
                         </Button>
                     )}
-                    {project.demo && (
+                    {project.demoLink && (
                         <Button
                             asChild
                             size="sm"
                             className="bg-amber-500 text-black hover:bg-amber-400"
                         >
                             <a
-                                href={project.demo}
+                                href={project.demoLink}
                                 target="_blank"
                                 rel="noreferrer"
                             >

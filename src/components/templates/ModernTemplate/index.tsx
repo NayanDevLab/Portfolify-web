@@ -24,6 +24,7 @@ export default async function ModernTemplate({ slug }: { slug: string }) {
                             withUser
                             withEducations
                             withProjects
+                            withExperiences
                         >
                             <div className="mt-10 flex gap-8">
                                 <aside className="hidden md:block md:sticky md:top-6 md:basis-[340px] md:shrink-0 h-fit self-start">
