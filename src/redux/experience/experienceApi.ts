@@ -15,7 +15,7 @@ export const experienceApi = apiSlice.injectEndpoints({
             }),
             providesTags: ['Experience'],
         }),
-        getExperiencesBySlug: builder.query<Experience, string>({
+        getExperiencesBySlug: builder.query<Experience[], string>({
             query: (slug) => ({
                 url: `/experiences/user/${slug}`,
                 method: 'GET',

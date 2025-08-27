@@ -1,56 +1,13 @@
 'use client';
 
 import { GraduationCap, BriefcaseBusiness, MapPin } from 'lucide-react';
-
-type EduItem = {
-    school: string;
-    degree: string;
-    start: string; // e.g., "2017"
-    end: string; // e.g., "2021"
-};
-
-type ExpItem = {
-    role: string;
-    company: string;
-    start: string; // e.g., "Aug, 2024"
-    end: string; // e.g., "Feb, 2025"
-    duration: string; // e.g., "7 mos" (hard-code or compute)
-    location?: string;
-    bullets: string[];
-};
+import { useTemplateData } from '../TemplateDataWrapper';
+import { formatDate } from '@/lib/dateUtils';
 
 export default function ResumeSection() {
-    const education: EduItem[] = [
-        {
-            school: 'Nihaereka College Of Management And Information Technology',
-            degree: 'Bachelor of Science in Computer Science and Information Technology (B.Sc. CSIT)',
-            start: '2017',
-            end: '2021',
-        },
-        {
-            school: 'Greenland International College',
-            degree: '+2 Science',
-            start: '2015',
-            end: '2017',
-        },
-    ];
-
-    const experience: ExpItem[] = [
-        {
-            role: 'Mid-Level Flutter Developer',
-            company: 'Tokma Technologies',
-            start: 'Aug, 2024',
-            end: 'Feb, 2025',
-            duration: '7 mos',
-            location: 'Kathmandu, Nepal',
-            bullets: [
-                'Developed new features and implemented UI designs into code using Flutter.',
-                'Designed and created custom e-form features including scrolling features and data entries.',
-                'Integrated Google and Facebook sign-in for user authentication.',
-                'Designed dynamic functionalities using the BLOC design pattern.',
-            ],
-        },
-    ];
+    const {
+        data: { experiences, educations },
+    } = useTemplateData();
 
     return (
         <section
@@ -71,15 +28,16 @@ export default function ResumeSection() {
                     title="Education"
                     icon={<GraduationCap className="h-5 w-5" />}
                 >
-                    {education.map((ed, i) => (
+                    {educations.map((ed, i) => (
                         <TimelineItem key={i}>
                             <div className="space-y-1">
                                 <h4 className="text-white font-semibold">
-                                    {ed.school}
+                                    {ed.institution}
                                 </h4>
                                 <p className="text-neutral-300">{ed.degree}</p>
                                 <p className="text-amber-300 font-medium">
-                                    {ed.start} — {ed.end}
+                                    {formatDate(ed.startDate)} —{' '}
+                                    {ed.endDate && formatDate(ed.endDate)}
                                 </p>
                             </div>
                         </TimelineItem>
@@ -91,17 +49,17 @@ export default function ResumeSection() {
                     title="Experience"
                     icon={<BriefcaseBusiness className="h-5 w-5" />}
                 >
-                    {experience.map((ex, i) => (
+                    {experiences.map((ex, i) => (
                         <TimelineItem key={i}>
                             <div className="space-y-1">
                                 <h4 className="text-white font-semibold">
-                                    {ex.role}
+                                    {ex.title}
                                 </h4>
                                 <p className="text-neutral-300">{ex.company}</p>
                                 <p className="text-amber-300 font-medium">
-                                    {ex.start} — {ex.end}{' '}
-                                    <span className="mx-1">•</span>{' '}
-                                    {ex.duration}
+                                    {formatDate(ex.startDate)} —{' '}
+                                    {ex.endDate && formatDate(ex.endDate)}{' '}
+                                    <span className="mx-1">•</span> 7 months
                                 </p>
                                 {ex.location && (
                                     <p className="italic text-neutral-300 flex items-center gap-1">
@@ -112,9 +70,10 @@ export default function ResumeSection() {
                             </div>
 
                             <ul className="mt-3 list-disc pl-5 marker:text-amber-400 text-neutral-300 space-y-1.5">
-                                {ex.bullets.map((b, idx) => (
+                                {ex.description}
+                                {/* {ex.bullets.map((b, idx) => (
                                     <li key={idx}>{b}</li>
-                                ))}
+                                ))} */}
                             </ul>
                         </TimelineItem>
                     ))}

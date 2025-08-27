@@ -8,6 +8,7 @@ import { TriangleAlert } from 'lucide-react';
 import { useUserDetails } from '@/hooks/useUserDetails';
 import { useEducations } from '@/hooks/useEducations';
 import { useProjects } from '@/hooks/useProjects';
+import { useExperience } from '@/hooks/useExperience';
 
 type ResourceState = {
     isLoading: boolean;
@@ -21,6 +22,7 @@ export type TemplateData = {
     user: ReturnType<typeof useUserDetails>['user'];
     educations: ReturnType<typeof useEducations>['educations'];
     projects: ReturnType<typeof useProjects>['projects'];
+    experiences: ReturnType<typeof useExperience>['experiences']; // ⬅️ NEW
 };
 
 type Ctx = {
@@ -29,6 +31,7 @@ type Ctx = {
         user: ResourceState;
         educations: ResourceState;
         projects: ResourceState;
+        experiences: ResourceState; // ⬅️ NEW
     };
 };
 
@@ -48,20 +51,25 @@ export default function TemplateDataWrapper({
     withUser = true,
     withEducations = true,
     withProjects = true,
+    withExperiences = true, // ⬅️ NEW flag
 }: {
     slug: string;
     children: React.ReactNode;
     withUser?: boolean;
     withEducations?: boolean;
     withProjects?: boolean;
+    withExperiences?: boolean; // ⬅️ NEW
 }) {
-    // ✅ Hooks always called; fetching controlled by enabled flags
+    // Always call hooks; control fetching via enabled flags
     const userQ = useUserDetails(slug, { enabled: withUser });
     const eduQ = useEducations(slug, { enabled: withEducations });
     const projQ = useProjects(slug, { enabled: withProjects });
+    const expQ = useExperience(slug, { enabled: withExperiences }); // ⬅️ NEW
 
-    const anyLoading = userQ.isLoading || eduQ.isLoading || projQ.isLoading;
-    const anyError = userQ.isError || eduQ.isError || projQ.isError;
+    const anyLoading =
+        userQ.isLoading || eduQ.isLoading || projQ.isLoading || expQ.isLoading; // ⬅️ NEW
+    const anyError =
+        userQ.isError || eduQ.isError || projQ.isError || expQ.isError; // ⬅️ NEW
 
     if (anyLoading) {
         return (
@@ -79,6 +87,7 @@ export default function TemplateDataWrapper({
             userQ.refetch();
             eduQ.refetch();
             projQ.refetch();
+            expQ.refetch(); // ⬅️ NEW
         };
         return (
             <Alert
@@ -109,6 +118,7 @@ export default function TemplateDataWrapper({
             user: userQ.user,
             educations: eduQ.educations,
             projects: projQ.projects,
+            experiences: expQ.experiences, // ⬅️ NEW
         },
         states: {
             user: {
@@ -129,6 +139,12 @@ export default function TemplateDataWrapper({
                 error: undefined,
                 refetch: projQ.refetch,
             },
+            experiences: {
+                isLoading: false,
+                isError: false,
+                error: undefined,
+                refetch: expQ.refetch,
+            }, // ⬅️ NEW
         },
     };
 
