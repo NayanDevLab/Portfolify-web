@@ -16,7 +16,7 @@ async function loadTemplate(name: string): Promise<TemplateComp> {
         case 'default':
         case 'modern':
         default:
-            return (await import('@/components/templates/ModernTemplate'))
+            return (await import('@/components/templates/Template3'))
                 .default as TemplateComp;
     }
 }
