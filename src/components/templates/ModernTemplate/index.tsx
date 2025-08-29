@@ -18,7 +18,6 @@ export default async function ModernTemplate({ slug }: { slug: string }) {
 
                 <main className="min-h-dvh bg-neutral-950 text-neutral-200">
                     <div className="mx-auto max-w-6xl px-4">
-                        {/* ⬇️ wrap BOTH columns so LeftSection can use the context */}
                         <TemplateDataWrapper
                             slug={slug}
                             withUser
